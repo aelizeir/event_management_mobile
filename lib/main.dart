@@ -1,4 +1,3 @@
-import 'package:event_management_mobile/screens/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:event_management_mobile/screens/LoginPage.dart';
 
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.yellow,
         ),
-        home: HomePage()
+        home: const LoginScreen()
     );
   }
 }
