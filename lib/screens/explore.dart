@@ -153,6 +153,314 @@ class ExplorePage extends StatelessWidget {
     }).map((event) {
       return Padding(
           padding: const EdgeInsets.all(8.0),
+          child: GestureDetector(
+            onTap: (){
+
+            },
+            child: Container(
+              width: 300,
+              height: 300,
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: mainTextColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 5,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: bottomNavBarBtnColor,
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: mainTextColor,
+                                  ),
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          DateTime.parse(event.eventDate)
+                                              .day
+                                              .toString(),
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            color: bookmarkColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          getMonthInitials(
+                                              DateTime.parse(event.eventDate)
+                                                  .month),
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: bookmarkColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ), // Date & Month
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: mainTextColor,
+                                  ),
+                                  child: Center(
+                                    child: Icon(Icons.bookmark,
+                                        color: bookmarkColor),
+                                  ),
+                                ),
+                              ), // Bookmark
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      event.eventName,
+                      style: TextStyle(
+                        color: primaryTextColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ), // Event Title
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        for (int i = 0; i < 2; i++) const Icon(Icons.person),
+                        if (event.attendees.length > 2)
+                          Text(
+                            '+${event.attendees.length - 2} Going',
+                            style: TextStyle(
+                              color: attendeesTextColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ), // Attendance
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.place),
+                        Text(
+                          event.eventPlace,
+                          style: TextStyle(
+                            color: shadowTextColor,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ), // Location
+                ],
+              ),
+            ),
+          ));
+    }).toList();
+
+    List<Widget> previousEvents = eventList.where((event) {
+      // Parse the event date from a string to a DateTime object
+      DateTime eventDate = DateTime.parse(event.eventDate);
+
+      // Check if the event date is in the past
+      return eventDate.isBefore(currentDate);
+    }).map((event) {
+      return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GestureDetector(
+            onTap: (){
+
+            },
+            child: Container(
+              width: 300,
+              height: 300,
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: mainTextColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 5,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: bottomNavBarBtnColor,
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: mainTextColor,
+                                  ),
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          DateTime.parse(event.eventDate)
+                                              .day
+                                              .toString(),
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            color: bookmarkColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          getMonthInitials(
+                                              DateTime.parse(event.eventDate)
+                                                  .month),
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: bookmarkColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ), // Date & Month
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: mainTextColor,
+                                  ),
+                                  child: Center(
+                                    child: Icon(Icons.bookmark,
+                                        color: bookmarkColor),
+                                  ),
+                                ),
+                              ), // Bookmark
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      event.eventName,
+                      style: TextStyle(
+                        color: primaryTextColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ), // Event Title
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        for (int i = 0; i < 2; i++) const Icon(Icons.person),
+                        if (event.attendees.length > 2)
+                          Text(
+                            '+${event.attendees.length - 2} Going',
+                            style: TextStyle(
+                              color: attendeesTextColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ), // Attendance
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.place),
+                        Text(
+                          event.eventPlace,
+                          style: TextStyle(
+                            color: shadowTextColor,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ), // Location
+                ],
+              ),
+            ),
+          ));
+    }).toList();
+
+    List<Widget> todayEvents = eventList.where((event) {
+      // Parse the event date from a string to a DateTime object
+      DateTime eventDate = DateTime.parse(event.eventDate);
+
+      // Check if the event date is today
+      return eventDate.year == currentDate.year &&
+          eventDate.month == currentDate.month &&
+          eventDate.day == currentDate.day;
+    }).map((event) {
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+          onTap: (){},
           child: Container(
             width: 300,
             height: 300,
@@ -288,154 +596,6 @@ class ExplorePage extends StatelessWidget {
                 ), // Location
               ],
             ),
-          ));
-    }).toList();
-
-    List<Widget> todayEvents = eventList.where((event) {
-      // Parse the event date from a string to a DateTime object
-      DateTime eventDate = DateTime.parse(event.eventDate);
-
-      // Check if the event date is today
-      return eventDate.year == currentDate.year &&
-          eventDate.month == currentDate.month &&
-          eventDate.day == currentDate.day;
-    }).map((event) {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          width: 300,
-          height: 300,
-          margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: mainTextColor,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.shade300,
-                blurRadius: 5,
-                offset: const Offset(0, 5),
-              ),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 150,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: bottomNavBarBtnColor,
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: mainTextColor,
-                              ),
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      DateTime.parse(event.eventDate)
-                                          .day
-                                          .toString(),
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: bookmarkColor,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      getMonthInitials(
-                                          DateTime.parse(event.eventDate)
-                                              .month),
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: bookmarkColor,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ), // Date & Month
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: mainTextColor,
-                              ),
-                              child: Center(
-                                child: Icon(Icons.bookmark,
-                                    color: bookmarkColor),
-                              ),
-                            ),
-                          ), // Bookmark
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text(
-                  event.eventName,
-                  style: TextStyle(
-                    color: primaryTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                  ),
-                ),
-              ), // Event Title
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    for (int i = 0; i < 2; i++) const Icon(Icons.person),
-                    if (event.attendees.length > 2)
-                      Text(
-                        '+${event.attendees.length - 2} Going',
-                        style: TextStyle(
-                          color: attendeesTextColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                  ],
-                ),
-              ), // Attendance
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    const Icon(Icons.place),
-                    Text(
-                      event.eventPlace,
-                      style: TextStyle(
-                        color: shadowTextColor,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ],
-                ),
-              ), // Location
-            ],
           ),
         ),
       );
@@ -508,6 +668,80 @@ class ExplorePage extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
+            Column(
+              children: [
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            'Event Today',
+                            style: TextStyle(
+                              color: primaryTextColor,
+                              // fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(0),
+                                child: Text(
+                                  'See all',
+                                  style: TextStyle(
+                                    color: shadowTextColor,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ),
+                              Icon(
+                                Icons.arrow_right,
+                                color: shadowTextColor,
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: todayEvents.isNotEmpty
+                            ? todayEvents
+                            : [
+                          SizedBox(
+                            width: 300,
+                            height: 300,
+                            child: Center(
+                              child: Text(
+                                'No event today',
+                                style: TextStyle(
+                                  color: primaryTextColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                )
+              ],
+            ),
             Column(
               children: [
                 Column(
@@ -592,7 +826,7 @@ class ExplorePage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(20),
                           child: Text(
-                            'Event Today',
+                            'Previous Events',
                             style: TextStyle(
                               color: primaryTextColor,
                               // fontWeight: FontWeight.bold,
@@ -632,24 +866,24 @@ class ExplorePage extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: todayEvents.isNotEmpty
-                            ? todayEvents
+                        children: previousEvents.isNotEmpty
+                            ? previousEvents
                             : [
-                                SizedBox(
-                                  width: 300,
-                                  height: 300,
-                                  child: Center(
-                                    child: Text(
-                                      'No event today',
-                                      style: TextStyle(
-                                        color: primaryTextColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 25,
-                                      ),
-                                    ),
-                                  ),
+                          SizedBox(
+                            width: 300,
+                            height: 300,
+                            child: Center(
+                              child: Text(
+                                'No previous events',
+                                style: TextStyle(
+                                  color: primaryTextColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
                                 ),
-                              ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   },
