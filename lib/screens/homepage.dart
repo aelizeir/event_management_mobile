@@ -1,9 +1,9 @@
 import 'package:event_management_mobile/constant.dart';
-import 'package:event_management_mobile/screens/addevent.dart';
-import 'package:event_management_mobile/screens/attendance.dart';
-import 'package:event_management_mobile/screens/events.dart';
-import 'package:event_management_mobile/screens/explore.dart';
-import 'package:event_management_mobile/screens/profile.dart';
+import 'package:event_management_mobile/screens/tabs/addevent.dart';
+import 'package:event_management_mobile/screens/tabs/attendance.dart';
+import 'package:event_management_mobile/screens/tabs/events.dart';
+import 'package:event_management_mobile/screens/tabs/explore.dart';
+import 'package:event_management_mobile/screens/tabs/profile.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

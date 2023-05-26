@@ -1,5 +1,6 @@
 import 'package:event_management_mobile/constant.dart';
 import 'package:event_management_mobile/models/eventmodel.dart';
+import 'package:event_management_mobile/screens/eventdetailspage.dart';
 import 'package:flutter/material.dart';
 
 class ExplorePage extends StatelessWidget {
@@ -155,7 +156,10 @@ class ExplorePage extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onTap: (){
-
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EventDetails(event: event)),
+              );
             },
             child: Container(
               width: 300,
@@ -307,7 +311,10 @@ class ExplorePage extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onTap: (){
-
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EventDetails(event: event)),
+              );
             },
             child: Container(
               width: 300,
@@ -460,7 +467,12 @@ class ExplorePage extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
-          onTap: (){},
+          onTap: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => EventDetails(event: event)),
+            );
+          },
           child: Container(
             width: 300,
             height: 300,
