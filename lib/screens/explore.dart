@@ -1,9 +1,9 @@
 import 'package:event_management_mobile/constant.dart';
+import 'package:event_management_mobile/models/eventmodel.dart';
 import 'package:flutter/material.dart';
 
 class ExplorePage extends StatelessWidget {
   const ExplorePage({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +39,270 @@ class ExplorePage extends StatelessWidget {
     }
 
     List<String> eventNames = [
-      'Event 1',
-      'Event 2',
-      'Event 3',
-      'Event 4',
-      'Event 5',
+      'Intramural Opening',
+      'Jeremiah\'s Birthday',
+      'Valentine\'s Day',
+      'USTP Day',
+      'Wellness Week',
     ];
 
-    List<Widget> containers = List.generate(eventNames.length, (index) {
+    List<EventModel> eventList = [
+      EventModel(
+        id: 1,
+        event_id: 1,
+        eventName: 'Awards Night',
+        eventTime: '12:00 PM',
+        eventDate: '2023-05-27',
+        eventPlace: 'USTP Gym',
+        eventPicture: 'event_picture.jpg',
+        eventDesc: 'Event description',
+        created_at: DateTime.now(),
+        updated_at: DateTime.now(),
+        attendees: List.generate(3, (index) {
+          return AttendeesModel(
+            id: index + 1,
+            name: 'Attendee ${index + 1}',
+            email: 'attendee${index + 1}@example.com',
+            student_id: 'S00000${index + 1}',
+            event_id: 1,
+            created_at: DateTime.now(),
+            updated_at: DateTime.now(),
+          );
+        }),
+      ),
+      EventModel(
+        id: 2,
+        event_id: 2,
+        eventName: 'Jeremiah\'s Birthday',
+        eventTime: '1:00 PM',
+        eventDate: '2023-06-15',
+        eventPlace: 'USTP Gym',
+        eventPicture: 'birthday_picture.jpg',
+        eventDesc: 'Birthday celebration for Jeremiah',
+        created_at: DateTime.now(),
+        updated_at: DateTime.now(),
+        attendees: List.generate(50, (index) {
+          return AttendeesModel(
+            id: index + 1,
+            name: 'Attendee ${index + 1}',
+            email: 'attendee${index + 1}@example.com',
+            student_id: 'S00000${index + 1}',
+            event_id: 2,
+            created_at: DateTime.now(),
+            updated_at: DateTime.now(),
+          );
+        }),
+      ),
+      EventModel(
+        id: 3,
+        event_id: 3,
+        eventName: 'Independence Day',
+        eventTime: '1:00 PM',
+        eventDate: '2023-06-12',
+        eventPlace: 'USTP',
+        eventPicture: 'Independence.jpg',
+        eventDesc: 'Independence day',
+        created_at: DateTime.now(),
+        updated_at: DateTime.now(),
+        attendees: List.generate(100, (index) {
+          return AttendeesModel(
+            id: index + 1,
+            name: 'Attendee ${index + 1}',
+            email: 'attendee${index + 1}@example.com',
+            student_id: 'S00000${index + 1}',
+            event_id: 3,
+            created_at: DateTime.now(),
+            updated_at: DateTime.now(),
+          );
+        }),
+      ),
+      EventModel(
+        id: 4,
+        event_id: 4,
+        eventName: 'Paugnat Festival',
+        eventTime: '12:00 PM',
+        eventDate: '2023-05-26',
+        eventPlace: 'USTP',
+        eventPicture: 'event_picture.jpg',
+        eventDesc: 'A Trailblazing Festival 2023',
+        created_at: DateTime.now(),
+        updated_at: DateTime.now(),
+        attendees: List.generate(100, (index) {
+          return AttendeesModel(
+            id: index + 1,
+            name: 'Attendee ${index + 1}',
+            email: 'attendee${index + 1}@example.com',
+            student_id: 'S00000${index + 1}',
+            event_id: 4,
+            created_at: DateTime.now(),
+            updated_at: DateTime.now(),
+          );
+        }),
+      ),
+    ];
+
+    // Get the current date
+    DateTime currentDate = DateTime.now();
+
+    List<Widget> upcomingEvents = eventList.where((event) {
+      // Parse the event date from a string to a DateTime object
+      DateTime eventDate = DateTime.parse(event.eventDate);
+
+      // Check if the event date is today or in the future
+      return eventDate.isAfter(currentDate) ||
+          eventDate.year == currentDate.year &&
+              eventDate.month == currentDate.month &&
+              eventDate.day == currentDate.day;
+    }).map((event) {
+      return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            width: 300,
+            height: 300,
+            margin: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: mainTextColor,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  blurRadius: 5,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 150,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: bottomNavBarBtnColor,
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: mainTextColor,
+                                ),
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        DateTime.parse(event.eventDate)
+                                            .day
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: fourthTextColor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        getMonthInitials(
+                                            DateTime.parse(event.eventDate)
+                                                .month),
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: fourthTextColor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ), // Date & Month
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: mainTextColor,
+                                ),
+                                child: Center(
+                                  child: Icon(Icons.bookmark,
+                                      color: fourthTextColor),
+                                ),
+                              ),
+                            ), // Bookmark
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
+                    event.eventName,
+                    style: TextStyle(
+                      color: primaryTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                  ),
+                ), // Event Title
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      for (int i = 0; i < 2; i++) const Icon(Icons.person),
+                      if (event.attendees.length > 2)
+                        Text(
+                          '+${event.attendees.length - 2} Going',
+                          style: TextStyle(
+                            color: secondaryTextColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                    ],
+                  ),
+                ), // Attendance
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.place),
+                      Text(
+                        event.eventPlace,
+                        style: TextStyle(
+                          color: thirdTextColor,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ), // Location
+              ],
+            ),
+          ));
+    }).toList();
+
+    List<Widget> todayEvents = eventList.where((event) {
+      // Parse the event date from a string to a DateTime object
+      DateTime eventDate = DateTime.parse(event.eventDate);
+
+      // Check if the event date is today
+      return eventDate.year == currentDate.year &&
+          eventDate.month == currentDate.month &&
+          eventDate.day == currentDate.day;
+    }).map((event) {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -54,15 +310,15 @@ class ExplorePage extends StatelessWidget {
           height: 300,
           margin: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: mainTextColor,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade300,
-                  blurRadius: 5 ,
-                  offset: const Offset(0,5),
-                ),
-              ]
+            borderRadius: BorderRadius.circular(10),
+            color: mainTextColor,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade300,
+                blurRadius: 5,
+                offset: const Offset(0, 5),
+              ),
+            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -94,7 +350,9 @@ class ExplorePage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      DateTime.now().day.toString(),
+                                      DateTime.parse(event.eventDate)
+                                          .day
+                                          .toString(),
                                       style: TextStyle(
                                         fontSize: 18,
                                         color: fourthTextColor,
@@ -102,7 +360,9 @@ class ExplorePage extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      getMonthInitials(DateTime.now().month),
+                                      getMonthInitials(
+                                          DateTime.parse(event.eventDate)
+                                              .month),
                                       style: TextStyle(
                                         fontSize: 12,
                                         color: fourthTextColor,
@@ -124,7 +384,8 @@ class ExplorePage extends StatelessWidget {
                                 color: mainTextColor,
                               ),
                               child: Center(
-                                child: Icon(Icons.bookmark, color: fourthTextColor),
+                                child: Icon(Icons.bookmark,
+                                    color: fourthTextColor),
                               ),
                             ),
                           ), // Bookmark
@@ -137,39 +398,38 @@ class ExplorePage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Text(
-                  eventNames[index],
+                  event.eventName,
                   style: TextStyle(
                     color: primaryTextColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                   ),
                 ),
-              ), //Event Title
+              ), // Event Title
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    const Icon(Icons.person),
-                    const Icon(Icons.person),
-                    const Icon(Icons.person),
-                    Text(
-                      '+20 Going',
-                      style: TextStyle(
-                        color: secondaryTextColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                    for (int i = 0; i < 2; i++) const Icon(Icons.person),
+                    if (event.attendees.length > 2)
+                      Text(
+                        '+${event.attendees.length - 2} Going',
+                        style: TextStyle(
+                          color: secondaryTextColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
                   ],
                 ),
-              ), //Attendance
+              ), // Attendance
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Icon(Icons.place),
+                    const Icon(Icons.place),
                     Text(
-                      'Event Location',
+                      event.eventPlace,
                       style: TextStyle(
                         color: thirdTextColor,
                         fontSize: 15,
@@ -177,12 +437,12 @@ class ExplorePage extends StatelessWidget {
                     ),
                   ],
                 ),
-              ), //Location
+              ), // Location
             ],
           ),
         ),
       );
-    });
+    }).toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -211,7 +471,8 @@ class ExplorePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 16.0), // Adjust the value as needed
+                padding: const EdgeInsets.only(
+                    right: 16.0), // Adjust the value as needed
                 child: IconButton(
                   icon: const Icon(Icons.account_circle_rounded, size: 40),
                   onPressed: () {
@@ -283,7 +544,10 @@ class ExplorePage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Icon(Icons.arrow_right, color: thirdTextColor,)
+                              Icon(
+                                Icons.arrow_right,
+                                color: thirdTextColor,
+                              )
                             ],
                           ),
                         ),
@@ -295,7 +559,7 @@ class ExplorePage extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: containers,
+                    children: upcomingEvents,
                   ),
                 )
               ],
@@ -333,7 +597,10 @@ class ExplorePage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Icon(Icons.arrow_right, color: thirdTextColor,)
+                              Icon(
+                                Icons.arrow_right,
+                                color: thirdTextColor,
+                              )
                             ],
                           ),
                         ),
@@ -341,12 +608,33 @@ class ExplorePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: containers
-                  ),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: todayEvents.isNotEmpty
+                            ? todayEvents
+                            : [
+                                SizedBox(
+                                  width: 300,
+                                  height: 300,
+                                  child: Center(
+                                    child: Text(
+                                      'No event today',
+                                      style: TextStyle(
+                                        color: primaryTextColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                      ),
+                    );
+                  },
                 )
               ],
             ),
@@ -356,4 +644,3 @@ class ExplorePage extends StatelessWidget {
     );
   }
 }
-
