@@ -148,11 +148,8 @@ class ExplorePage extends StatelessWidget {
       // Parse the event date from a string to a DateTime object
       DateTime eventDate = DateTime.parse(event.eventDate);
 
-      // Check if the event date is today or in the future
-      return eventDate.isAfter(currentDate) ||
-          eventDate.year == currentDate.year &&
-              eventDate.month == currentDate.month &&
-              eventDate.day == currentDate.day;
+      // Check if the event date is in the future
+      return eventDate.isAfter(currentDate);
     }).map((event) {
       return Padding(
           padding: const EdgeInsets.all(8.0),
@@ -206,7 +203,7 @@ class ExplorePage extends StatelessWidget {
                                             .toString(),
                                         style: TextStyle(
                                           fontSize: 18,
-                                          color: fourthTextColor,
+                                          color: bookmarkColor,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -216,7 +213,7 @@ class ExplorePage extends StatelessWidget {
                                                 .month),
                                         style: TextStyle(
                                           fontSize: 12,
-                                          color: fourthTextColor,
+                                          color: bookmarkColor,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -236,7 +233,7 @@ class ExplorePage extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: Icon(Icons.bookmark,
-                                      color: fourthTextColor),
+                                      color: bookmarkColor),
                                 ),
                               ),
                             ), // Bookmark
@@ -282,7 +279,7 @@ class ExplorePage extends StatelessWidget {
                       Text(
                         event.eventPlace,
                         style: TextStyle(
-                          color: thirdTextColor,
+                          color: shadowTextColor,
                           fontSize: 15,
                         ),
                       ),
@@ -355,7 +352,7 @@ class ExplorePage extends StatelessWidget {
                                           .toString(),
                                       style: TextStyle(
                                         fontSize: 18,
-                                        color: fourthTextColor,
+                                        color: bookmarkColor,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -365,7 +362,7 @@ class ExplorePage extends StatelessWidget {
                                               .month),
                                       style: TextStyle(
                                         fontSize: 12,
-                                        color: fourthTextColor,
+                                        color: bookmarkColor,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -385,7 +382,7 @@ class ExplorePage extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Icon(Icons.bookmark,
-                                    color: fourthTextColor),
+                                    color: bookmarkColor),
                               ),
                             ),
                           ), // Bookmark
@@ -431,7 +428,7 @@ class ExplorePage extends StatelessWidget {
                     Text(
                       event.eventPlace,
                       style: TextStyle(
-                        color: thirdTextColor,
+                        color: shadowTextColor,
                         fontSize: 15,
                       ),
                     ),
@@ -539,14 +536,14 @@ class ExplorePage extends StatelessWidget {
                                 child: Text(
                                   'See all',
                                   style: TextStyle(
-                                    color: thirdTextColor,
+                                    color: shadowTextColor,
                                     fontSize: 15,
                                   ),
                                 ),
                               ),
                               Icon(
                                 Icons.arrow_right,
-                                color: thirdTextColor,
+                                color: shadowTextColor,
                               )
                             ],
                           ),
@@ -555,12 +552,33 @@ class ExplorePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: upcomingEvents,
-                  ),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: upcomingEvents.isNotEmpty
+                            ? upcomingEvents
+                            : [
+                          SizedBox(
+                            width: 300,
+                            height: 300,
+                            child: Center(
+                              child: Text(
+                                'No upcoming events',
+                                style: TextStyle(
+                                  color: primaryTextColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 )
               ],
             ),
@@ -592,14 +610,14 @@ class ExplorePage extends StatelessWidget {
                                 child: Text(
                                   'See all',
                                   style: TextStyle(
-                                    color: thirdTextColor,
+                                    color: shadowTextColor,
                                     fontSize: 15,
                                   ),
                                 ),
                               ),
                               Icon(
                                 Icons.arrow_right,
-                                color: thirdTextColor,
+                                color: shadowTextColor,
                               )
                             ],
                           ),
