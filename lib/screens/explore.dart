@@ -263,7 +263,7 @@ class ExplorePage extends StatelessWidget {
                         Text(
                           '+${event.attendees.length - 2} Going',
                           style: TextStyle(
-                            color: secondaryTextColor,
+                            color: attendeesTextColor,
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                           ),
@@ -412,7 +412,7 @@ class ExplorePage extends StatelessWidget {
                       Text(
                         '+${event.attendees.length - 2} Going',
                         style: TextStyle(
-                          color: secondaryTextColor,
+                          color: attendeesTextColor,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
