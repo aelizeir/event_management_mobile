@@ -1,5 +1,11 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../api/api_response.dart';
+import '../constant.dart';
+import '../models/user.dart';
 import 'HomePage.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -14,6 +20,49 @@ class _LoginScreenState extends State<LoginScreen> {
   String password = '';
   TextEditingController idController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  Future<ApiResponse>login(String studentId, String password)async{
+    ApiResponse apiResponse = ApiResponse();
+    try{
+      final response = await http.post(
+        Uri.parse(loginURL),
+        headers: {'Accept': 'application/json'},
+        body: {'studentId': studentId, 'password': password}
+      );
+      switch(response.statusCode){
+        case 200:
+        apiResponse.data = User.fromJson(jsonDecode(response.body));
+        break;
+        case 403:
+        apiResponse.error = jsonDecode(response.body)['message'];
+        break;
+        default:
+        apiResponse.error = 'Invalid Credentials';
+        break;
+      }   
+    }
+    catch(er){
+      apiResponse.error = 'somethig';
+    }
+    return apiResponse;
+  }
+  void saveToken(User user) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setString('token', user.token ?? '');
+    // ignore: use_build_context_synchronously
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+  }
+  void loginNow()async{
+    ApiResponse response = await login(idController.text, passwordController.text);
+    if(response.error == null){
+      saveToken(response.data as User);
+      //getUserDetail();
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(response.error!))
+      );
+    }
+    
+  } 
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -110,9 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       var isFormValid = formKey.currentState!.validate();
                       if (isFormValid) {
-                        if(idController.text == 'alley@test.com') {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                        }
+                        loginNow();
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

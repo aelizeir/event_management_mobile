@@ -10,3 +10,6 @@ Color shadowTextColor =  const Color(0xFF525252);
 Color bookmarkColor =  const Color(0xFFEC5B5B);
 Color primaryBgColor = const Color(0xFF2196F3);
 Color secondaryBgColor = const Color(0xFFFFFFFF);
+
+const baseURL = 'http://192.168.45.159:8000/api';  /// Change this depending on your ip address
+const loginURL = '$baseURL/login';
