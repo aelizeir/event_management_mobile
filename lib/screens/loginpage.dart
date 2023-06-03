@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
     ApiResponse response = await login(idController.text, passwordController.text);
     if(response.error == null){
       saveToken(response.data as User);
-      //getUserDetail();
+      getUserDetail();
     }else{
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(response.error!))
