@@ -31,7 +31,7 @@ Future<ApiResponse> getUserDetail()async{
 }
 
 class todayEventApiResponse{
-  final List<TodayEventModel> eventToday;
+  final List<EventScheduleModel> eventToday;
   //final DateTime timezone;
 
   todayEventApiResponse({
@@ -40,8 +40,8 @@ class todayEventApiResponse{
   });
 
   factory todayEventApiResponse.fromJson(Map<String, dynamic> json) {
-    List<TodayEventModel> events = List<TodayEventModel>.from(
-        json['event_today'].map((eventJson) => TodayEventModel.fromJson(eventJson)));
+    List<EventScheduleModel> events = List<EventScheduleModel>.from(
+        json['events'].map((eventJson) => EventScheduleModel.fromJson(eventJson)));
 
    // DateTime timezone = DateTime.parse(json['timezone']);
 

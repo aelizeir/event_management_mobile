@@ -27,7 +27,7 @@ class EventModel {
   
 }
 
-class TodayEventModel {
+class EventScheduleModel {
   final int id;
   final String event_id;
   final String eventName;
@@ -40,7 +40,7 @@ class TodayEventModel {
   final DateTime updated_at;
   //final List<AttendeesModel> attendees;
 
-  TodayEventModel({
+  EventScheduleModel({
     required this.id,
     required this.event_id,
     required this.eventName,
@@ -54,8 +54,8 @@ class TodayEventModel {
     //required this.attendees,
   });
   
-  factory TodayEventModel.fromJson(Map<String, dynamic> json) {
-    return TodayEventModel(
+  factory EventScheduleModel.fromJson(Map<String, dynamic> json) {
+    return EventScheduleModel(
       id: json['id'],
       event_id: json['event_id'],
       eventName: json['eventName'],

@@ -20,4 +20,5 @@ const userProfileURL = '$baseURL/user';
 //----------EVENTS APIs---------\\
 const allEvents = '$baseURL/events';
 const todaysEvent = '$baseURL/eventtoday';
-
+const upcomingEvent = '$baseURL/upcomingevents';
+const endedEvent = '$baseURL/endedevents';
