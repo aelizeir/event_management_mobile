@@ -13,3 +13,11 @@ Color secondaryBgColor = const Color(0xFFFFFFFF);
 
 const baseURL = 'http://192.168.1.13:8000/api';  /// Change this depending on your ip address
 const loginURL = '$baseURL/login';
+const registerURL = '$baseURL/register';
+const userProfileURL = '$baseURL/user';
+
+//----------EVENTS APIs---------\\
+const allEvents = '$baseURL/events';
+const todaysEvent = '$baseURL/eventtoday';
+const upcomingEvent = '$baseURL/upcomingevents';
+const endedEvent = '$baseURL/endedevents';
