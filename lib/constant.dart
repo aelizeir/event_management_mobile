@@ -10,3 +10,14 @@ Color shadowTextColor =  const Color(0xFF525252);
 Color bookmarkColor =  const Color(0xFFEC5B5B);
 Color primaryBgColor = const Color(0xFF2196F3);
 Color secondaryBgColor = const Color(0xFFFFFFFF);
+
+const baseURL = 'http://192.168.1.13:8000/api';  /// Change this depending on your ip address
+const loginURL = '$baseURL/login';
+const registerURL = '$baseURL/register';
+const userProfileURL = '$baseURL/user';
+
+//----------EVENTS APIs---------\\
+const allEvents = '$baseURL/events';
+const todaysEvent = '$baseURL/eventtoday';
+const upcomingEvent = '$baseURL/upcomingevents';
+const endedEvent = '$baseURL/endedevents';

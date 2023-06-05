@@ -1,5 +1,6 @@
+import 'package:event_management_mobile/screens/HomePage.dart';
 import 'package:flutter/material.dart';
-import 'package:event_management_mobile/screens/LoginPage.dart';
+import 'package:event_management_mobile/screens/loginpage.dart';
 
 
 void main() {
