@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:event_management_mobile/constant.dart';
 import 'package:event_management_mobile/models/eventmodel.dart';
 import 'package:event_management_mobile/screens/eventdetailspage.dart';
+import 'package:event_management_mobile/screens/tabs/see%20all/see_all_upcoming.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 class ExplorePage extends StatelessWidget {
@@ -1390,8 +1391,11 @@ class ExplorePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SeeAllUpcoming()));
+                                },
                                 child: Padding(
-                                  padding: const EdgeInsets.all(0),
+                                  padding: EdgeInsets.all(0),
                                   child: Text(
                                     'See all',
                                     style: TextStyle(
