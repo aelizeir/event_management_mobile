@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:event_management_mobile/screens/signuppage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -152,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Spacer(),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.yellow),
+                      backgroundColor: MaterialStateProperty.all(Color(0xFF1E3A8A)),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)))
 
                     ),
@@ -186,85 +187,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   ),
                   const Spacer(),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     Text('Do not have an account? '),
-                  //     GestureDetector(
-                  //       onTap: () => Get.to(() => RegisterScreen(), transition: Transition.cupertino),
-                  //       child: Text('Create One.',
-                  //       style: TextStyle(
-                  //         color: Colors.blueGrey,
-                  //         fontWeight: FontWeight.w600,
-                  //         fontSize: 14,
-                  //       ),),
-                  //     ),
-                  //   ],
-                  // )
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Do not have an account? '),
+                      GestureDetector(
+                        onTap: () => Get.to(() => SignUpPage(), transition: Transition.cupertino),
+                        child: Text('Create One.',
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        ),),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
           ),
         ),
       ),
-
-        // appBar: AppBar(
-        //   backgroundColor: Colors.black,
-        //   centerTitle: true,
-        //   elevation: 0,
-        //   title: const Text(
-        //     'Login',
-        //     style: TextStyle(
-        //       fontSize: 20,
-        //       fontWeight: FontWeight.bold,
-        //     ),
-        //   ),
-        // ),
-        // body: Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: 20),
-        //   child: Column(
-        //     children: [
-        //       const SizedBox(
-        //         height: 20,
-        //       ),
-        //       TextField(
-        //         decoration: const InputDecoration(
-        //           hintText: 'Enter your email',
-        //         ),
-        //         onChanged: (value) {
-        //           _email = value;
-        //         },
-        //       ),
-        //       const SizedBox(
-        //         height: 30,
-        //       ),
-        //       TextField(
-        //         obscureText: true,
-        //         decoration: const InputDecoration(
-        //           hintText: 'Enter your password',
-        //         ),
-        //         onChanged: (value) {
-        //           _password = value;
-        //         },
-        //       ),
-        //       const SizedBox(
-        //         height: 30,
-        //       ),
-        //       ElevatedButton(
-        //           onPressed:() {
-        //             if(_email == 'alley@test.com') {
-        //               HomePage();
-        //             } else if (_email == 'rose@test.com') {
-        //               HomePage2();
-        //             } else if (_email == 'alex@test.com') {
-        //               HomePage3();
-        //             }
-        //           },
-        //         child: Text("Log In"),
-        //       ),
-        //     ],
-        //   ),
-        // )
     );
   }
 }

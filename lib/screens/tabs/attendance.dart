@@ -24,7 +24,7 @@ class _AttendancePageState extends State<AttendancePage> {
           ),
         ],
       ),
-      child: const Row(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(
