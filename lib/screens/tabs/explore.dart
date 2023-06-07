@@ -1389,13 +1389,15 @@ class ExplorePage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(0),
-                                child: Text(
-                                  'See all',
-                                  style: TextStyle(
-                                    color: shadowTextColor,
-                                    fontSize: 15,
+                              GestureDetector(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(0),
+                                  child: Text(
+                                    'See all',
+                                    style: TextStyle(
+                                      color: shadowTextColor,
+                                      fontSize: 15,
+                                    ),
                                   ),
                                 ),
                               ),

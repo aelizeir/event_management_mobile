@@ -12,7 +12,7 @@ class _AttendancePageState extends State<AttendancePage> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 15),
       padding: const EdgeInsets.all(20),
-      height: 170,
+      height: 180,
       decoration: BoxDecoration(
         color: const Color(0xFFFFFFFF),
         borderRadius: BorderRadius.circular(16),
@@ -24,37 +24,37 @@ class _AttendancePageState extends State<AttendancePage> {
           ),
         ],
       ),
-      child: const Row(
+      child:  Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
+          const Icon(
             Icons.check_circle,
             size: 70,
             color: Colors.green,
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Wed, Apr 28 • 5:30 PM',
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400, color: Colors.blue),
                 ),
-                SizedBox(height: 5),
-                Text(
+                const SizedBox(height: 5),
+                const Text(
                   'Week Of Wellness Opening Sample Event ',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   'Student-ID: 2020301936',
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400, color: Colors.black),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
-                  children: [
+                  children: const [
                     Icon(
                       Icons.location_on,
                       size: 16,
