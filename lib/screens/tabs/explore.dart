@@ -514,7 +514,7 @@ class ExplorePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: bottomNavBarBtnColor,
-                      image: DecorationImage(image: NetworkImage('http://192.168.98.11:8000/storage/${event.eventPicture}'))
+                      image: DecorationImage(image: NetworkImage('http://192.168.1.22:8000/storage/${event.eventPicture}'))
                     ),
                     child: Column(
                       children: [
