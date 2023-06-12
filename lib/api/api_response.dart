@@ -14,6 +14,7 @@ class ApiResponse{
 Future<ApiResponse> getUserDetail()async{
   ApiResponse apiResponse = ApiResponse();
     String token = await getToken();
+    int studentId = await getstudentId();
     //int role = await getRole();
     //int status = await getStatus();
     final response = await http.get(
