@@ -5,6 +5,8 @@ import 'package:event_management_mobile/screens/loginpage.dart';
 // import 'package:event_management_mobile/screens/tabs/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
+import 'see all/see_all_upcoming.dart';
 class ExplorePage extends StatelessWidget {
   const ExplorePage({Key? key}) : super(key: key);
 
@@ -945,13 +947,18 @@ class ExplorePage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(0),
-                                child: Text(
-                                  'See all',
-                                  style: TextStyle(
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SeeAllUpcoming()));
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.all(0),
+                                    child: Text(
+                                    'See all',
+                                    style: TextStyle(
                                     color: shadowTextColor,
                                     fontSize: 15,
+                                    ),
                                   ),
                                 ),
                               ),

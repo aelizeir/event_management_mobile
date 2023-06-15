@@ -5,7 +5,7 @@ Future<String> getToken() async{
   return pref.getString('token') ?? '';
 }
 
-Future<String> getStudentId() async {
+Future<int> getstudentId() async{
   SharedPreferences pref = await SharedPreferences.getInstance();
-  return pref.getString('studentId') ?? '';
+  return pref.getInt('studentId') ?? 0;
 }

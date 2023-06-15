@@ -49,6 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void saveToken(User user) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     await pref.setString('token', user.token ?? '');
+    await pref.setInt('studentId', user.studentId ?? 0);
     // ignore: use_build_context_synchronously
     Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
   }

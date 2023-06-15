@@ -21,3 +21,6 @@ const allEvents = '$baseURL/events';
 const todaysEvent = '$baseURL/eventtoday';
 const upcomingEvent = '$baseURL/upcomingevents';
 const endedEvent = '$baseURL/endedevents';
+
+//----------ATTENDED EVENT APIs-------\\
+const attendedEvents = '$baseURL/event/attendance/';
