@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:event_management_mobile/locals/shared_prefs.dart';
 import 'package:flutter/material.dart';
-// import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:http/http.dart' as http;
 import '../../constant.dart';
 
@@ -49,16 +49,16 @@ class _AddEventPageState extends State<AddEventPage> {
           } else if(snapshot.hasData){
             final data = snapshot.data!;
             print(data);
-            // return QrImageView(
-            //   data: data['studentId'],
-            //   version: QrVersions.auto,
-            //   size: 320,
-            //   gapless: false,
-            //   embeddedImage: AssetImage('assets/images/my_embedded_image.png'),
-            //   embeddedImageStyle: QrEmbeddedImageStyle(
-            //     size: Size(80, 80),
-            //   ),
-            // );
+            return QrImageView(
+              data: data['studentId'],
+              version: QrVersions.auto,
+              size: 320,
+              gapless: false,
+              embeddedImage: AssetImage('assets/images/my_embedded_image.png'),
+              embeddedImageStyle: QrEmbeddedImageStyle(
+                size: Size(80, 80),
+              ),
+            );
           }
           return CircularProgressIndicator();
         },
