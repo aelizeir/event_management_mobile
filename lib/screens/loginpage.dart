@@ -41,13 +41,14 @@ class _LoginScreenState extends State<LoginScreen> {
       }   
     }
     catch(er){
-      apiResponse.error = 'something';
+      apiResponse.error = 'somethig';
     }
     return apiResponse;
   }
   void saveToken(User user) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     await pref.setString('token', user.token ?? '');
+    await pref.setInt('studentId', user.studentId ?? 0);
     // ignore: use_build_context_synchronously
     Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
   }
