@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Container(
               decoration: BoxDecoration(
-                color: Colors.yellow,
+                color: Color(0xFF1E3A8A),
                 borderRadius: BorderRadius.circular(20),
               ),
               padding: const EdgeInsets.all(10),
