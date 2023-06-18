@@ -1,6 +1,7 @@
 import 'package:event_management_mobile/screens/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:event_management_mobile/screens/loginpage.dart';
+import 'package:get/get.dart';
 
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: const Color(0xFF1E3A8A),

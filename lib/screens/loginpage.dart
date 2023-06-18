@@ -154,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Spacer(),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Color(0xFF1E3A8A)),
+                      backgroundColor: MaterialStateProperty.all(const Color(0xFF1E3A8A)),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)))
 
                     ),
@@ -191,10 +191,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Do not have an account? '),
+                      const Text('Do not have an account? '),
                       GestureDetector(
-                        onTap: () => Get.to(() => SignUpPage(), transition: Transition.cupertino),
-                        child: Text('Create One.',
+                        onTap: () => Get.to(() => const SignUpPage(), transition: Transition.cupertino),
+                        child: const Text('Create One.',
                         style: TextStyle(
                           color: Colors.blueGrey,
                           fontWeight: FontWeight.w600,
