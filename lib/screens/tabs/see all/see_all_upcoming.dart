@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:event_management_mobile/screens/eventdetailspage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../../constant.dart';
@@ -76,10 +77,10 @@ class _SeeAllUpcomingState extends State<SeeAllUpcoming> {
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
               onTap: (){
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => EventDetails()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EventDetails(event: event)),
+                );
               },
               child: Container(
                 width: 300,
@@ -239,122 +240,54 @@ class _SeeAllUpcomingState extends State<SeeAllUpcoming> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 100, // default is 56
-        toolbarOpacity: 0.5,
-        elevation: 0,
-        backgroundColor: primaryBgColor,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(20),
-          ),
-        ),
-        leading: Column(
-          children: [
-            IconButton(
-              icon: const Icon(Icons.menu, size: 40),
-              onPressed: () {
-                // Handle menu button press here
-              },
-            ),
-          ],
-        ),
-        actions: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    right: 16.0), // Adjust the value as needed
-                child: IconButton(
-                  icon: const Icon(Icons.account_circle_rounded, size: 40),
-                  onPressed: () {
-                    // Handle profile button press here
-                  },
-                ),
-              ),
-            ],
-          ),
-        ],
-
-        title: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: 'Search',
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
-          ],
-        ),
+        title: const Text('All Upcoming Events'),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            Column(
-              children: [
-                LayoutBuilder(
-                  builder: (context, constraints) {
-                    return FutureBuilder<List<Widget>>(
-                      future: fetchUpcomingEvents(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
-                          // Show a loading indicator while fetching the events
-                          return CircularProgressIndicator();
-                        } else if (snapshot.hasError) {
-                          // Show an error message if fetching the events failed
-                          return Text('Failed to fetch events');
-                        } else if (snapshot.hasData) {
-                          // Display the list of event widgets
-                          List<Widget> upcomingEvents = snapshot.data!;
-                          return SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: upcomingEvents.isNotEmpty
-                                  ? upcomingEvents
-                                  : [
-                                SizedBox(
-                                  width: 300,
-                                  height: 300,
-                                  child: Center(
-                                    child: Text(
-                                      'No upcoming today',
-                                      style: TextStyle(
-                                        color: primaryTextColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 25,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        } else {
-                          // Handle other cases
-                          return Container();
-                        }
-                      },
-                    );
-                  },
-                )
-              ],
-            ),
-          ],
-        ),
+      body: FutureBuilder<List<Widget>>(
+        future: fetchUpcomingEvents(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Show a loading indicator while fetching the events
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            // Show an error message if fetching the events failed
+            return const Center(
+              child: Text('Failed to fetch events'),
+            );
+          } else if (snapshot.hasData) {
+            // Display the list of event widgets
+            List<Widget> upcomingEvents = snapshot.data!;
+            return Center(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: upcomingEvents.isNotEmpty
+                      ? upcomingEvents
+                      : [
+                    SizedBox(
+                      width: 300,
+                      height: 300,
+                      child: Center(
+                        child: Text(
+                          'No upcoming events',
+                          style: TextStyle(
+                            color: primaryTextColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            // Handle other cases
+            return Container();
+          }
+        },
       ),
     );
   }
