@@ -6,6 +6,7 @@ import 'package:event_management_mobile/screens/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../eventdetailspage.dart';
 import 'see all/see_all_upcoming.dart';
 class ExplorePage extends StatelessWidget {
   const ExplorePage({Key? key}) : super(key: key);
@@ -177,10 +178,10 @@ class ExplorePage extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: (){
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => EventDetails()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EventDetails(event: event)),
+                  );
                 },
                 child: Container(
                   width: 300,
@@ -207,7 +208,7 @@ class ExplorePage extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: bottomNavBarBtnColor,
-                              image: DecorationImage(image: NetworkImage('http://192.168.98.11:8000/storage/${event.eventPicture}'))
+                              image: DecorationImage(image: NetworkImage('http://192.168.58.51:8000/storage/${event.eventPicture}'))
                           ),
                           child: Column(
                             children: [
@@ -318,7 +319,6 @@ class ExplorePage extends StatelessWidget {
         throw Exception('Failed');
       }
     }
-
     Future<List<Widget>> fetchUpcomingEvents() async {
       // Make the HTTP GET request to fetch the API data
       try{
@@ -380,7 +380,7 @@ class ExplorePage extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: bottomNavBarBtnColor,
-                              image: DecorationImage(image: NetworkImage('http://192.168.98.11:8000/storage/${event.eventPicture}'))
+                              image: DecorationImage(image: NetworkImage('http://192.168.58.51:8000/storage/${event.eventPicture}'))
                           ),
                           child: Column(
                             children: [
@@ -521,10 +521,10 @@ class ExplorePage extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: (){
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => EventDetails()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EventDetails(event: event)),
+                  );
                 },
                 child: Container(
                   width: 300,
@@ -551,7 +551,7 @@ class ExplorePage extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: bottomNavBarBtnColor,
-                              image: DecorationImage(image: NetworkImage('http://192.168.98.11:8000/storage/${event.eventPicture}'))
+                              image: DecorationImage(image: NetworkImage('http://192.168.58.51:8000/storage/${event.eventPicture}'))
                           ),
                           child: Column(
                             children: [
@@ -999,7 +999,7 @@ class ExplorePage extends StatelessWidget {
                                   height: 300,
                                   child: Center(
                                     child: Text(
-                                      'No upcoming today',
+                                      'No upcoming events',
                                       style: TextStyle(
                                         color: primaryTextColor,
                                         fontWeight: FontWeight.bold,
@@ -1091,7 +1091,7 @@ class ExplorePage extends StatelessWidget {
                                   height: 300,
                                   child: Center(
                                     child: Text(
-                                      'No upcoming today',
+                                      'No previous today',
                                       style: TextStyle(
                                         color: primaryTextColor,
                                         fontWeight: FontWeight.bold,

@@ -2,7 +2,7 @@ import 'package:event_management_mobile/models/eventmodel.dart';
 import 'package:flutter/material.dart';
 
 class EventDetails extends StatelessWidget {
-  final EventModel event;
+  final EventScheduleModel event;
 
   const EventDetails({super.key, required this.event});
 
