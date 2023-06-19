@@ -39,6 +39,9 @@ class _AddEventPageState extends State<AddEventPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('QR Code'),
+      ),
       body: FutureBuilder(
         future: fetchUser(),
         builder: (BuildContext context, snapshot) {

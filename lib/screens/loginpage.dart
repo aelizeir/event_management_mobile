@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
       }   
     }
     catch(er){
-      apiResponse.error = 'somethig';
+      apiResponse.error = 'something';
     }
     return apiResponse;
   }

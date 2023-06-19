@@ -109,7 +109,7 @@ class _EditProfileState extends State<EditProfile> {
                               children: [
                                 if (_profileUrl != null)
                                   Image.network(
-                                    'http://192.168.58.51:8000/storage/$_profileUrl',
+                                    'http://192.168.145.51:8000/storage/$_profileUrl',
                                     fit: BoxFit.cover,
                                     height: double.infinity,
                                     width: double.infinity,

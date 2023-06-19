@@ -147,7 +147,7 @@ class _ProfilePageState extends State<ProfilePage> {
       backgroundColor: Colors.grey.shade800,
       child: pictureUrl != null
           ? Image.network(
-        'http://192.168.58.51:8000/storage/$pictureUrl',
+        'http://192.168.145.51:8000/storage/$pictureUrl',
         fit: BoxFit.cover,
       )
           : const Icon(
