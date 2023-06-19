@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(20),
               ),
               padding: const EdgeInsets.all(10),
-              child: const Icon(Icons.add, size: 40 , color: Colors.white),
+              child: const Icon(Icons.qr_code, size: 40 , color: Colors.white),
             ),
             label: '',
           ),

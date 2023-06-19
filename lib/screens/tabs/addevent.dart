@@ -52,15 +52,24 @@ class _AddEventPageState extends State<AddEventPage> {
           } else if(snapshot.hasData){
             final data = snapshot.data!;
             print(data);
-            return QrImageView(
-              data: data['studentId'],
-              version: QrVersions.auto,
-              size: 320,
-              gapless: false,
-              embeddedImage: AssetImage('assets/images/my_embedded_image.png'),
-              embeddedImageStyle: QrEmbeddedImageStyle(
-                size: Size(80, 80),
-              ),
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: QrImageView(
+                    data: data['user_id'],
+                    version: QrVersions.auto,
+                    size: 320,
+                    gapless: false,
+                    embeddedImage: AssetImage('assets/images/my_embedded_image.png'),
+                    embeddedImageStyle: QrEmbeddedImageStyle(
+                      size: Size(80, 80),
+                    ),
+                  ),
+                ),
+                Text(data['name']),
+                Text(data['department'])
+              ],
             );
           }
           return CircularProgressIndicator();
