@@ -1,6 +1,11 @@
+import 'dart:convert';
+
+import 'package:event_management_mobile/api/api_response.dart';
+import 'package:event_management_mobile/constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'LoginPage.dart';
 
@@ -20,6 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _yearAndSectionController = TextEditingController();
   final TextEditingController _departmentController = TextEditingController();
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -31,16 +37,26 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      // Process the sign-up logic here
+  void _submitForm() async{
       String name = _nameController.text;
-      String studentID = _studentIDController.text;
+      int studentID = int.parse(_studentIDController.text);
       String email = _emailController.text;
       String password = _passwordController.text;
       String year = _yearAndSectionController.text;
       String department = _departmentController.text;
-
+      final body = {
+        'name': name,
+        'studentId': studentID,
+        'email' : email,
+        'password' : password,
+        'year_section' : year,
+        'department': department,
+      };
+      final response = await http.post(
+        Uri.parse(registerURL),
+        body: jsonEncode(body),
+        headers: {'Content-Type': 'application/json'}
+      );
 
       print('Name: $name');
       print('Student ID: $studentID');
@@ -58,22 +74,23 @@ class _SignUpPageState extends State<SignUpPage> {
       _departmentController.clear();
 
       // Show a success dialog
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Success'),
-          content: const Text('Sign-up successful!'),
-          actions: [
-            ElevatedButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
-      );
-    }
+      if(response.statusCode == 200){
+          showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Success'),
+            content: const Text('Sign-up successful!'),
+            actions: [
+              ElevatedButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      }
   }
   var formKey = GlobalKey<FormState>();
 
@@ -237,39 +254,40 @@ class _SignUpPageState extends State<SignUpPage> {
                       var isFormValid = formKey.currentState!.validate();
                       if (isFormValid) {
                         // Process the sign-up logic here
-                        String name = _nameController.text;
-                        String studentID = _studentIDController.text;
-                        String email = _emailController.text;
-                        String password = _passwordController.text;
-                        String year = _yearAndSectionController.text;
-                        String department = _departmentController.text;
+                        _submitForm();
+                        // String name = _nameController.text;
+                        // String studentID = _studentIDController.text;
+                        // String email = _emailController.text;
+                        // String password = _passwordController.text;
+                        // String year = _yearAndSectionController.text;
+                        // String department = _departmentController.text;
 
-                        // Add your code to handle sign-up and API requests
+                        // // Add your code to handle sign-up and API requests
 
-                        // Clear the form fields
-                        _nameController.clear();
-                        _studentIDController.clear();
-                        _emailController.clear();
-                        _passwordController.clear();
-                        _yearAndSectionController.clear();
-                        _departmentController.clear();
+                        // // Clear the form fields
+                        // _nameController.clear();
+                        // _studentIDController.clear();
+                        // _emailController.clear();
+                        // _passwordController.clear();
+                        // _yearAndSectionController.clear();
+                        // _departmentController.clear();
 
-                        // Show a success dialog
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text('Success'),
-                            content: const Text('Sign-up successful!'),
-                            actions: [
-                              ElevatedButton(
-                                child: const Text('OK'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          ),
-                        );
+                        // // Show a success dialog
+                        // showDialog(
+                        //   context: context,
+                        //   builder: (context) => AlertDialog(
+                        //     title: const Text('Success'),
+                        //     content: const Text('Sign-up successful!'),
+                        //     actions: [
+                        //       ElevatedButton(
+                        //         child: const Text('OK'),
+                        //         onPressed: () {
+                        //           Navigator.of(context).pop();
+                        //         },
+                        //       ),
+                        //     ],
+                        //   ),
+                        // );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Invalid credentials')),
