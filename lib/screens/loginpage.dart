@@ -81,9 +81,21 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 60.0),
+                    child: Center(
+                      child: Container(
+                          width: 200,
+                          height: 150,
+                          /*decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(50.0)),*/
+                          child: Image.asset('assets/logo-logo.png')),
+                    ),
+                  ),
                   const Spacer(),
                   Text(
-                      "USTP Event",
+                      "Event Management",
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 40,
@@ -191,10 +203,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Do not have an account? '),
+                      Text('Do not have an account? '),
                       GestureDetector(
-                        onTap: () => Get.to(() => const SignUpPage(), transition: Transition.cupertino),
-                        child: const Text('Create One.',
+                        onTap: () => Get.to(() => SignUpPage(), transition: Transition.cupertino),
+                        child: Text('Create One.',
                         style: TextStyle(
                           color: Colors.blueGrey,
                           fontWeight: FontWeight.w600,
