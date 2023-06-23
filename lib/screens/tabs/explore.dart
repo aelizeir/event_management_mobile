@@ -208,7 +208,7 @@ class ExplorePage extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: bottomNavBarBtnColor,
-                              image: DecorationImage(image: NetworkImage('http://192.168.145.51:8000/storage/${event.eventPicture}'))
+                              image: DecorationImage(image: NetworkImage('http://192.168.182.249:8000/storage/${event.eventPicture}'))
                           ),
                           child: Column(
                             children: [
@@ -380,7 +380,7 @@ class ExplorePage extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: bottomNavBarBtnColor,
-                              image: DecorationImage(image: NetworkImage('http://192.168.145.51:8000/storage/${event.eventPicture}'))
+                              image: DecorationImage(image: NetworkImage('http://192.168.182.249:8000/storage/${event.eventPicture}'))
                           ),
                           child: Column(
                             children: [
@@ -551,7 +551,7 @@ class ExplorePage extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: bottomNavBarBtnColor,
-                              image: DecorationImage(image: NetworkImage('http://192.168.58.51:8000/storage/${event.eventPicture}'))
+                              image: DecorationImage(image: NetworkImage('http://192.168.182.249:8000/storage/${event.eventPicture}'))
                           ),
                           child: Column(
                             children: [
@@ -667,19 +667,19 @@ class ExplorePage extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: kToolbarHeight + 10, // Increase the toolbar height to provide additional space
         elevation: 0,
-        backgroundColor: Color(0xFF11101D),
-        shape: RoundedRectangleBorder(
+        backgroundColor: const Color(0xFF11101D),
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(20), // Apply rounded corners to the bottom of the AppBar
           ),
         ),
         title: Container(
-          margin: EdgeInsets.symmetric(vertical: 10), // Add vertical margin to the container
+          margin: const EdgeInsets.symmetric(vertical: 10), // Add vertical margin to the container
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Row(
+          child: const Row(
             children: [
               SizedBox(width: 10), // Add some left padding
               Icon(Icons.search, color: Colors.grey),
@@ -701,21 +701,14 @@ class ExplorePage extends StatelessWidget {
       ),
 
       drawer: Drawer(
-        backgroundColor: Color(0xFF11101D),
+        backgroundColor: const Color(0xFF11101D),
         child: SizedBox(
           width: 230,
           height: MediaQuery.of(context).size.height,
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
-              DrawerHeader(
-                child: Text(
-                  'Drawer Header',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
-                ),
+              const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Color(0xFF11101D),
                   image: DecorationImage(
@@ -723,11 +716,18 @@ class ExplorePage extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
+                child: Text(
+                  'Drawer Header',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 12.0),
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: Container(
-                  decoration: ShapeDecoration(
+                  decoration: const ShapeDecoration(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
@@ -742,9 +742,9 @@ class ExplorePage extends StatelessWidget {
                     ),
                   ),
                   child: ListTile(
-                    contentPadding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                    leading: Icon(Icons.dashboard_customize, color: Colors.white),
-                    title: Text(
+                    contentPadding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                    leading: const Icon(Icons.dashboard_customize, color: Colors.white),
+                    title: const Text(
                       'Dashboard',
                       style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),
                     ),
@@ -758,9 +758,9 @@ class ExplorePage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 12.0),
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: Container(
-                  decoration: ShapeDecoration(
+                  decoration: const ShapeDecoration(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
@@ -775,9 +775,9 @@ class ExplorePage extends StatelessWidget {
                     ),
                   ),
                   child: ListTile(
-                    contentPadding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                    leading: Icon(Icons.arrow_back_rounded, color: Colors.white),
-                    title: Text(
+                    contentPadding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                    leading: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+                    title: const Text(
                       'Bookmarks',
                       style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),
                     ),
@@ -791,9 +791,9 @@ class ExplorePage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 12.0),
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: Container(
-                  decoration: ShapeDecoration(
+                  decoration: const ShapeDecoration(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
@@ -808,16 +808,16 @@ class ExplorePage extends StatelessWidget {
                     ),
                   ),
                   child: ListTile(
-                    contentPadding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                    leading: Icon(Icons.logout_sharp, color: Colors.white),
-                    title: Text(
+                    contentPadding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                    leading: const Icon(Icons.logout_sharp, color: Colors.white),
+                    title: const Text(
                       'Logout',
                       style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),
                     ),
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(builder: (context) => const LoginScreen()),
                       );
                     },
                   ),
@@ -883,10 +883,10 @@ class ExplorePage extends StatelessWidget {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           // Show a loading indicator while fetching the events
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         } else if (snapshot.hasError) {
                           // Show an error message if fetching the events failed
-                          return Text('Failed to fetch events');
+                          return const Text('Failed to fetch events');
                         } else if (snapshot.hasData) {
                           // Display the list of event widgets
                           List<Widget> todayEvents = snapshot.data!;
@@ -952,7 +952,7 @@ class ExplorePage extends StatelessWidget {
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => const SeeAllUpcoming()));
                                 },
                                 child: Padding(
-                                  padding: EdgeInsets.all(0),
+                                  padding: const EdgeInsets.all(0),
                                     child: Text(
                                     'See all',
                                     style: TextStyle(
@@ -980,10 +980,10 @@ class ExplorePage extends StatelessWidget {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           // Show a loading indicator while fetching the events
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         } else if (snapshot.hasError) {
                           // Show an error message if fetching the events failed
-                          return Text('Failed to fetch events');
+                          return const Text('Failed to fetch events');
                         } else if (snapshot.hasData) {
                           // Display the list of event widgets
                           List<Widget> upcomingEvents = snapshot.data!;
@@ -1072,10 +1072,10 @@ class ExplorePage extends StatelessWidget {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           // Show a loading indicator while fetching the events
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         } else if (snapshot.hasError) {
                           // Show an error message if fetching the events failed
-                          return Text('Failed to fetch events');
+                          return const Text('Failed to fetch events');
                         } else if (snapshot.hasData) {
                           // Display the list of event widgets
                           List<Widget> upcomingEvents = snapshot.data!;
