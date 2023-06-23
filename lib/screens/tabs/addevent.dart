@@ -56,7 +56,7 @@ class _AddEventPageState extends State<AddEventPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Center(
-                  child: QrImageView(
+                  child: QrImage(
                     data: data['user_id'],
                     version: QrVersions.auto,
                     size: 320,
