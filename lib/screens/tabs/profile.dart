@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:event_management_mobile/constant.dart';
+import 'package:event_management_mobile/screens/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../locals/shared_prefs.dart';
@@ -287,8 +288,9 @@ class _ProfilePageState extends State<ProfilePage> {
           hoverColor: Colors.yellow,
           leading: const Icon(Icons.logout),
           title: const Text('Logout'),
-          onTap: () {
-            // Handle help action here
+          onTap: () async{
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginScreen()));
+            removeToken();
           },
         ),
       ],

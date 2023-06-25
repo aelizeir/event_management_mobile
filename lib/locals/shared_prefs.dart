@@ -9,3 +9,8 @@ Future<int> getstudentId() async{
   SharedPreferences pref = await SharedPreferences.getInstance();
   return pref.getInt('studentId') ?? 0;
 }
+
+Future<bool> removeToken()async{
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  return pref.remove('token');
+}
