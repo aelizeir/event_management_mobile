@@ -36,8 +36,6 @@ class EventScheduleModel {
   final String eventPlace;
   final String eventPicture;
   final String eventDesc;
-  final DateTime created_at;
-  final DateTime updated_at;
   //final List<AttendeesModel> attendees;
 
   EventScheduleModel({
@@ -49,8 +47,6 @@ class EventScheduleModel {
     required this.eventPlace,
     required this.eventPicture,
     required this.eventDesc,
-    required this.created_at,
-    required this.updated_at,
     //required this.attendees,
   });
   
@@ -64,8 +60,6 @@ class EventScheduleModel {
       eventPlace: json['eventPlace'],
       eventPicture: json['eventPicture'],
       eventDesc: json['eventDesc'],
-      created_at: DateTime.parse(json['created_at']),
-      updated_at: DateTime.parse(json['updated_at']),
     );
   }
 }

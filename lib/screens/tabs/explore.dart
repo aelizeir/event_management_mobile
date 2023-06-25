@@ -486,7 +486,7 @@ class ExplorePage extends StatelessWidget {
           onTap: (){
             // Navigator.push(
             //   context,
-            //   MaterialPageRoute(builder: (context) => EventDetails()),
+            //     MaterialPageRoute(builder: (context) => EventDetails(event: event,)),
             // );
           },
           child: Container(
@@ -674,10 +674,10 @@ class ExplorePage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
           onTap: (){
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => EventDetails()),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => EventDetails(event: event,)),
+            );
           },
           child: Container(
             width: 300,
@@ -704,7 +704,7 @@ class ExplorePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: bottomNavBarBtnColor,
-                      image: DecorationImage(image: NetworkImage('http://192.168.98.11:8000/storage/${event.eventPicture}'))
+                      image: DecorationImage(image: NetworkImage('http://10.0.0.55:8000/storage/${event.eventPicture}'))
                     ),
                     child: Column(
                       children: [
