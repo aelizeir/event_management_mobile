@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class EventListPage extends StatefulWidget {
-  EventListPage();
+  const EventListPage({super.key});
 
   @override
   _EventListPageState createState() => _EventListPageState();

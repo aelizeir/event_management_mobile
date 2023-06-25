@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     ExplorePage(),
-    EventPage(),
+    EventListPage(),
     AddEventPage(),
     AttendancePage(),
     ProfilePage(),
