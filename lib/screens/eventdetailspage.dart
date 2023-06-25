@@ -11,12 +11,12 @@ class EventDetails extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text("Event Details"),
+        title: const Text("Event Details"),
         leading: IconButton(
             onPressed: (){
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back)),
+            icon: const Icon(Icons.arrow_back)),
         backgroundColor: Colors.transparent,
         elevation: 0,
 
@@ -30,10 +30,10 @@ class EventDetails extends StatelessWidget {
               height: 250,
             ),
             Padding(
-              padding: EdgeInsets.only(top:40, bottom: 40, left: 20, right: 20),
+              padding: const EdgeInsets.only(top:40, bottom: 40, left: 20, right: 20),
               child: Text(
                   event.eventName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold
                   )
@@ -43,15 +43,15 @@ class EventDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(bottom: 30, left: 20, right: 20),
+                  padding: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color.fromRGBO(238, 240, 255, 1),
                       borderRadius: BorderRadius.all(Radius.circular(10))
                     ),
                     height: 50,
                     width: 50,
-                    child: Icon(
+                    child: const Icon(
                       Icons.calendar_month_rounded,
                       size: 35,
                       color: Colors.blueAccent,
@@ -62,12 +62,12 @@ class EventDetails extends StatelessWidget {
                   children: [
                     Text(
                       event.eventDate,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold
                       )
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(event.eventTime)
                   ],
                 ),
@@ -77,15 +77,15 @@ class EventDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(bottom: 30, left: 20, right: 20),
+                  padding: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Color.fromRGBO(238, 240, 255, 1),
                         borderRadius: BorderRadius.all(Radius.circular(10))
                     ),
                     height: 50,
                     width: 50,
-                    child: Icon(
+                    child: const Icon(
                       Icons.location_on,
                       size: 35,
                       color: Colors.blueAccent,
@@ -96,7 +96,7 @@ class EventDetails extends StatelessWidget {
                   children: [
                     Text(
                         event.eventPlace,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold
                         )
@@ -105,7 +105,7 @@ class EventDetails extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
+            const Padding(
                 padding: EdgeInsets.only(bottom: 20, left: 20, right: 20),
                 child: Text(
                     "About Event",
@@ -115,10 +115,10 @@ class EventDetails extends StatelessWidget {
                 )
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 65, left: 20, right: 20),
+              padding: const EdgeInsets.only(bottom: 65, left: 20, right: 20),
               child: Text(
                 event.eventDesc,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 15
                 )
               ),
@@ -128,8 +128,8 @@ class EventDetails extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: (){},
-        label: Text("ATTEND"),
-        icon: Icon(Icons.arrow_circle_right),
+        label: const Text("ATTEND"),
+        icon: const Icon(Icons.arrow_circle_right),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
