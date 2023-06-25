@@ -46,7 +46,7 @@ class _AddEventPageState extends State<AddEventPage> {
         future: fetchUser(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if(snapshot.hasData){
@@ -56,13 +56,13 @@ class _AddEventPageState extends State<AddEventPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Center(
-                  child: QrImage(
+                  child: QrImageView(
                     data: data['user_id'],
                     version: QrVersions.auto,
                     size: 320,
                     gapless: false,
-                    embeddedImage: AssetImage('assets/images/my_embedded_image.png'),
-                    embeddedImageStyle: QrEmbeddedImageStyle(
+                    embeddedImage: const AssetImage('assets/images/my_embedded_image.png'),
+                    embeddedImageStyle: const QrEmbeddedImageStyle(
                       size: Size(80, 80),
                     ),
                   ),
@@ -72,7 +72,7 @@ class _AddEventPageState extends State<AddEventPage> {
               ],
             );
           }
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         },
       ),
     );
