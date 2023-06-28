@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:event_management_mobile/screens/signuppage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,24 +25,24 @@ class _LoginScreenState extends State<LoginScreen> {
     ApiResponse apiResponse = ApiResponse();
     try{
       final response = await http.post(
-        Uri.parse(loginURL),
-        headers: {'Accept': 'application/json'},
-        body: {'studentId': studentId, 'password': password}
+          Uri.parse(loginURL),
+          headers: {'Accept': 'application/json'},
+          body: {'studentId': studentId, 'password': password}
       );
       switch(response.statusCode){
         case 200:
-        apiResponse.data = User.fromJson(jsonDecode(response.body));
-        break;
+          apiResponse.data = User.fromJson(jsonDecode(response.body));
+          break;
         case 403:
-        apiResponse.error = jsonDecode(response.body)['message'];
-        break;
+          apiResponse.error = jsonDecode(response.body)['message'];
+          break;
         default:
-        apiResponse.error = 'Invalid Credentials';
-        break;
-      }   
+          apiResponse.error = 'Invalid Credentials';
+          break;
+      }
     }
     catch(er){
-      apiResponse.error = 'somethig';
+      apiResponse.error = 'something';
     }
     return apiResponse;
   }
@@ -59,11 +60,11 @@ class _LoginScreenState extends State<LoginScreen> {
       getUserDetail();
     }else{
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(response.error!))
+          SnackBar(content: Text(response.error!))
       );
     }
-    
-  } 
+
+  }
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -72,103 +73,124 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Form(
         key: formKey,
         child: SafeArea(
-          child: SizedBox(
-            height: double.infinity,
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Spacer(),
-                  Text(
-                      "USTP Event",
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 40,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                      "Log in",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const Spacer(),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-                    decoration: BoxDecoration(
-                        color: Colors.grey[350],
-                        borderRadius: const BorderRadius.all(Radius.circular(8))
-                    ),
-                    child: TextFormField(
-                      controller: idController,
-                      decoration: const InputDecoration(
-                        hintText: 'Enter ID',
-                        border: InputBorder.none,
-                        prefixIcon: Icon(Icons.person),
-                        ),
-                      validator: (value) {
-                        return (value == '') ? 'Please enter value' : null;
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-                    decoration: BoxDecoration(
-                        color: Colors.grey[350],
-                        borderRadius: const BorderRadius.all(Radius.circular(8))
-                    ),
-                    child: TextFormField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        hintText: 'Enter Password',
-                        border: InputBorder.none,
-                        prefixIcon: Icon(Icons.lock),
-                        suffixIcon: Icon(Icons.remove_red_eye)
+          child: SingleChildScrollView( // Wrap Column with SingleChildScrollView
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height, // Use MediaQuery to get the height of the screen
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 60.0),
+                      child: Center(
+                        child: Container(
+                            width: 200,
+                            height: 150,
+                            /*decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(50.0)),*/
+                            child: Image.asset('assets/logo-logo.png')),
                       ),
-                      validator: (value) {
-                        return (value == '') ? 'Please enter value' : null;
-                      },
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    alignment: Alignment.centerRight,
-                    child: const Text(
-                      'Forgot Password?',
+                    const Spacer(),
+                    Center(
+                      child: Text(
+                        "Event Management",
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      "Log in",
                       style: TextStyle(
                         color: Colors.grey,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                  ),
-                  const Spacer(),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.yellow),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)))
-
+                    const SizedBox(
+                      height: 50,
                     ),
-                    onPressed: () {
-                      var isFormValid = formKey.currentState!.validate();
-                      if (isFormValid) {
-                        loginNow();
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text('Invalid Credentials')),
-                        );
-                      }
-                    },
-                    child: Container(
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                      decoration: BoxDecoration(
+                          color: Colors.grey[350],
+                          borderRadius: const BorderRadius.all(Radius.circular(8))
+                      ),
+                      child: TextFormField(
+                        controller: idController,
+                        decoration: const InputDecoration(
+                          hintText: 'Enter ID',
+                          border: InputBorder.none,
+                          prefixIcon: Icon(Icons.person),
+                        ),
+                        validator: (value) {
+                          return (value == '') ? 'Please enter value' : null;
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                      decoration: BoxDecoration(
+                          color: Colors.grey[350],
+                          borderRadius: const BorderRadius.all(Radius.circular(8))
+                      ),
+                      child: TextFormField(
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                            hintText: 'Enter Password',
+                            border: InputBorder.none,
+                            prefixIcon: Icon(Icons.lock),
+                            suffixIcon: Icon(Icons.remove_red_eye)
+                        ),
+                        validator: (value) {
+                          return (value == '') ? 'Please enter value' : null;
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Center(
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: const Text(
+                          'Forgot Password?',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(const Color(0xFF1E3A8A)),
+                          shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)))
+
+                      ),
+                      onPressed: () {
+                        var isFormValid = formKey.currentState!.validate();
+                        if (isFormValid) {
+                          loginNow();
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Invalid Credentials')),
+                          );
+                        }
+                      },
+                      child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                         width: Get.width * 0.6,
                         alignment: Alignment.center,
@@ -184,88 +206,34 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Colors.white,
                           ),
                         ),
-                  ),
-                  ),
-                  const Spacer(),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     Text('Do not have an account? '),
-                  //     GestureDetector(
-                  //       onTap: () => Get.to(() => RegisterScreen(), transition: Transition.cupertino),
-                  //       child: Text('Create One.',
-                  //       style: TextStyle(
-                  //         color: Colors.blueGrey,
-                  //         fontWeight: FontWeight.w600,
-                  //         fontSize: 14,
-                  //       ),),
-                  //     ),
-                  //   ],
-                  // )
-                ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Do not have an account? '),
+                        GestureDetector(
+                          onTap: () => Get.to(() => const SignUpPage(), transition: Transition.cupertino),
+                          child: const Text('Create One.',
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                            ),),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                  ],
+                ),
               ),
             ),
           ),
         ),
       ),
-
-        // appBar: AppBar(
-        //   backgroundColor: Colors.black,
-        //   centerTitle: true,
-        //   elevation: 0,
-        //   title: const Text(
-        //     'Login',
-        //     style: TextStyle(
-        //       fontSize: 20,
-        //       fontWeight: FontWeight.bold,
-        //     ),
-        //   ),
-        // ),
-        // body: Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: 20),
-        //   child: Column(
-        //     children: [
-        //       const SizedBox(
-        //         height: 20,
-        //       ),
-        //       TextField(
-        //         decoration: const InputDecoration(
-        //           hintText: 'Enter your email',
-        //         ),
-        //         onChanged: (value) {
-        //           _email = value;
-        //         },
-        //       ),
-        //       const SizedBox(
-        //         height: 30,
-        //       ),
-        //       TextField(
-        //         obscureText: true,
-        //         decoration: const InputDecoration(
-        //           hintText: 'Enter your password',
-        //         ),
-        //         onChanged: (value) {
-        //           _password = value;
-        //         },
-        //       ),
-        //       const SizedBox(
-        //         height: 30,
-        //       ),
-        //       ElevatedButton(
-        //           onPressed:() {
-        //             if(_email == 'alley@test.com') {
-        //               HomePage();
-        //             } else if (_email == 'rose@test.com') {
-        //               HomePage2();
-        //             } else if (_email == 'alex@test.com') {
-        //               HomePage3();
-        //             }
-        //           },
-        //         child: Text("Log In"),
-        //       ),
-        //     ],
-        //   ),
-        // )
     );
   }
 }
