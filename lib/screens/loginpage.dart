@@ -66,6 +66,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   }
   var formKey = GlobalKey<FormState>();
+  bool _isHidden = true;
+
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.w500,
+                        fontSize: 18,
                       ),
                     ),
                     const SizedBox(
@@ -145,12 +153,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       child: TextFormField(
                         controller: passwordController,
-                        obscureText: true,
-                        decoration: const InputDecoration(
+                        obscureText: _isHidden,
+                        decoration: InputDecoration(
                             hintText: 'Enter Password',
                             border: InputBorder.none,
-                            prefixIcon: Icon(Icons.lock),
-                            suffixIcon: Icon(Icons.remove_red_eye)
+                            prefixIcon: const Icon(Icons.lock),
+                            suffix: InkWell(
+                              onTap: _togglePasswordView,
+                              child: Icon(
+                                _isHidden
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                            )
                         ),
                         validator: (value) {
                           return (value == '') ? 'Please enter value' : null;

@@ -30,9 +30,14 @@ class _EventListPageState extends State<EventListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Events',
-          style: TextStyle(color: Colors.black),
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 21,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w600,
+            ),
         ),
         backgroundColor: Colors.white,
         actions: [
@@ -52,6 +57,7 @@ class _EventListPageState extends State<EventListPage> {
           ),
         ],
         iconTheme: IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),

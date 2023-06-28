@@ -40,7 +40,16 @@ class _AddEventPageState extends State<AddEventPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('QR Code'),
+        title: const Text(
+          'QR Code',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 21,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        backgroundColor: Colors.white,
       ),
       body: FutureBuilder(
         future: fetchUser(),

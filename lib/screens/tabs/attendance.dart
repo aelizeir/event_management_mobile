@@ -172,12 +172,12 @@ class _AttendancePageState extends State<AttendancePage> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: const Color(0xFFFFFFFF),
-      elevation: 0,
-      leading: const Icon(
-        Icons.arrow_back_outlined,
-        color: Colors.black,
-        size: 30,
-      ),
+      // elevation: 0,
+      // leading: const Icon(
+      //   Icons.arrow_back_outlined,
+      //   color: Colors.black,
+      //   size: 30,
+      // ),
       title: const Text(
         'Attendance Log',
         style: TextStyle(

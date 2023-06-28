@@ -13,6 +13,7 @@ class ExplorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     String getMonthInitials(int month) {
       switch (month) {
         case 1:
@@ -679,22 +680,35 @@ class ExplorePage extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: const Row(
+          child: Row(
             children: [
-              SizedBox(width: 10), // Add some left padding
-              Icon(Icons.search, color: Colors.grey),
-              SizedBox(width: 10), // Add space between the icon and the text field
+              const SizedBox(width: 10), // Add some left padding
+              const Icon(Icons.search, color: Colors.grey),
+              const SizedBox(width: 10), // Add space between the icon and the text field
               Expanded(
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Search',
                     border: InputBorder.none,
                     isDense: true, // Reduce the height of the text field
                     contentPadding: EdgeInsets.symmetric(vertical: 8), // Adjust the vertical padding
                   ),
+                  // Add the eventNames list as the search terms
+                  onChanged: (value) {
+                    // Perform search logic using the value and eventNames list
+                    // Example search logic:
+                    List<String> searchResults = eventNames
+                        .where((eventName) =>
+                        eventName.toLowerCase().contains(value.toLowerCase()))
+                        .toList();
+
+
+                    // Handle the search results as needed
+                    print(searchResults);
+                  },
                 ),
               ),
-              SizedBox(width: 10), // Add some right padding
+              const SizedBox(width: 10), // Add some right padding
             ],
           ),
         ),
@@ -712,68 +726,69 @@ class ExplorePage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Color(0xFF11101D),
                   image: DecorationImage(
-                    image: AssetImage('images/ustp.jpeg'),
-                    fit: BoxFit.cover,
+                    image: AssetImage('assets/logo-logo.png'),
+                    // fit: BoxFit.cover,
                   ),
                 ),
                 child: Text(
-                  'Drawer Header',
+                  '',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
                   ),
                 ),
               ),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: Container(
-                  decoration: const ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(50),
-                        bottomLeft: Radius.circular(50),
-                        bottomRight: Radius.circular(20),
-                      ),
-                      side: BorderSide(
-                        color: Color(0xFFffd14f),
-                        width: 3,
-                      ),
-                    ),
-                  ),
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
-                    leading: const Icon(Icons.dashboard_customize, color: Colors.white),
-                    title: const Text(
-                      'Dashboard',
-                      style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),
-                    ),
-                    onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => Dashboard()),
-                      // );
-                    },
-                  ),
+                  // decoration: const ShapeDecoration(
+                  //   shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.only(
+                  //       topLeft: Radius.circular(20),
+                  //       topRight: Radius.circular(50),
+                  //       bottomLeft: Radius.circular(50),
+                  //       bottomRight: Radius.circular(20),
+                  //     ),
+                  //     side: BorderSide(
+                  //       color: Color(0xFFffd14f),
+                  //       width: 3,
+                  //     ),
+                  //   ),
+                  // ),
+                  // child: ListTile(
+                  //   contentPadding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                  //   leading: const Icon(Icons.dashboard_customize, color: Colors.white),
+                  //   title: const Text(
+                  //     'Dashboard',
+                  //     style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),
+                  //   ),
+                  //   onTap: () {
+                  //     // Navigator.push(
+                  //     //   context,
+                  //     //   MaterialPageRoute(builder: (context) => Dashboard()),
+                  //     // );
+                  //   },
+                  // ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: Container(
-                  decoration: const ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(50),
-                        bottomLeft: Radius.circular(50),
-                        bottomRight: Radius.circular(20),
-                      ),
-                      side: BorderSide(
-                        color: Color(0xFFffd14f),
-                        width: 3,
-                      ),
-                    ),
-                  ),
+                  // decoration: const ShapeDecoration(
+                  //   shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.only(
+                  //       topLeft: Radius.circular(20),
+                  //       topRight: Radius.circular(50),
+                  //       bottomLeft: Radius.circular(50),
+                  //       bottomRight: Radius.circular(20),
+                  //     ),
+                  //     side: BorderSide(
+                  //       color: Color(0xFFffd14f),
+                  //       width: 3,
+                  //     ),
+                  //   ),
+                  // ),
                   child: ListTile(
                     contentPadding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
                     leading: const Icon(Icons.arrow_back_rounded, color: Colors.white),
@@ -793,20 +808,20 @@ class ExplorePage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: Container(
-                  decoration: const ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(50),
-                        bottomLeft: Radius.circular(50),
-                        bottomRight: Radius.circular(20),
-                      ),
-                      side: BorderSide(
-                        color: Color(0xFFffd14f),
-                        width: 3,
-                      ),
-                    ),
-                  ),
+                  // decoration: const ShapeDecoration(
+                  //   shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.only(
+                  //       topLeft: Radius.circular(20),
+                  //       topRight: Radius.circular(50),
+                  //       bottomLeft: Radius.circular(50),
+                  //       bottomRight: Radius.circular(20),
+                  //     ),
+                  //     side: BorderSide(
+                  //       color: Color(0xFFffd14f),
+                  //       width: 3,
+                  //     ),
+                  //   ),
+                  // ),
                   child: ListTile(
                     contentPadding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
                     leading: const Icon(Icons.logout_sharp, color: Colors.white),

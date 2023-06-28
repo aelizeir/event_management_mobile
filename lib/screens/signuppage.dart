@@ -92,6 +92,13 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
   var formKey = GlobalKey<FormState>();
+  bool _isHidden = true;
+
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -170,11 +177,18 @@ class _SignUpPageState extends State<SignUpPage> {
                       const SizedBox(height: 15),
                       TextFormField(
                         controller: _passwordController,
-                        obscureText: true,
-                        decoration: const InputDecoration(
+                        obscureText: _isHidden,
+                        decoration: InputDecoration(
                           hintText: 'Password',
-                          prefixIcon: Icon(Icons.lock),
-                          suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                          prefixIcon: const Icon(Icons.lock),
+                            suffix: InkWell(
+                              onTap: _togglePasswordView,
+                              child: Icon(
+                                _isHidden
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                            )
                         ),
                         validator: (value) {
                           return (value == '') ? 'Please enter value' : null;

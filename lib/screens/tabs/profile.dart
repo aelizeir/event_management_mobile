@@ -126,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
       height: 200,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black, Colors.yellow],
+          colors: [Colors.black, Color(0xFF1E3A8A)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -166,7 +166,7 @@ class _ProfilePageState extends State<ProfilePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
-          hoverColor: Colors.yellow,
+          hoverColor: Colors.grey.shade400,
           leading: const Icon(Icons.account_circle),
           title: const Text('My Account'),
           onTap: () {
@@ -179,7 +179,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   content: Container(
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Colors.black, Colors.yellow],
+                        colors: [Colors.black, Color(0xFF1E3A8A)],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -285,7 +285,7 @@ class _ProfilePageState extends State<ProfilePage> {
           },
         ),
         ListTile(
-          hoverColor: Colors.yellow,
+          hoverColor: Colors.grey.shade400,
           leading: const Icon(Icons.logout),
           title: const Text('Logout'),
           onTap: () async{
