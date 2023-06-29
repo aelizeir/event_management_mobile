@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.event_management_mobile">
    <application
-        android:label="event_management_mobile"
+        android:label="USTP Event Management"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
