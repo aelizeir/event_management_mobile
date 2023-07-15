@@ -148,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
       backgroundColor: Colors.grey.shade800,
       child: pictureUrl != null
           ? Image.network(
-        'http://192.168.182.249:8000/storage/$pictureUrl',
+        'http://192.168.43.85:8000/storage/$pictureUrl',
         fit: BoxFit.cover,
       )
           : const Icon(
@@ -306,9 +306,9 @@ class NumberWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        button(text: 'Attended', value: 10),
+        button(text: 'Attended', value: 1),
         divider(),
-        button(text: 'Missed', value: 5),
+        button(text: 'Missed', value: 0),
       ],
     );
   }

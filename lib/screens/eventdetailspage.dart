@@ -25,9 +25,14 @@ class EventDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 30),
             Container(
-              color: Colors.green,
               height: 250,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color(0xFF1E3A8A),
+                  image: DecorationImage(image: NetworkImage('http://192.168.43.85:8000/storage/${event.eventPicture}'))
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top:40, bottom: 40, left: 20, right: 20),

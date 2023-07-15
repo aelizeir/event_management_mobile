@@ -2,11 +2,13 @@ import 'dart:convert';
 import 'package:event_management_mobile/constant.dart';
 import 'package:event_management_mobile/models/eventmodel.dart';
 import 'package:event_management_mobile/screens/loginpage.dart';
+import 'package:event_management_mobile/screens/tabs/see%20all/see_all_todays.dart';
 // import 'package:event_management_mobile/screens/tabs/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../eventdetailspage.dart';
+import 'see all/see_all_previous.dart';
 import 'see all/see_all_upcoming.dart';
 class ExplorePage extends StatelessWidget {
   const ExplorePage({Key? key}) : super(key: key);
@@ -552,7 +554,7 @@ class ExplorePage extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: bottomNavBarBtnColor,
-                              image: DecorationImage(image: NetworkImage('http://http://192.168.1.18/:8000/storage/${event.eventPicture}'))
+                              image: DecorationImage(image: NetworkImage('http://192.168.43.85:8000/storage/${event.eventPicture}'))
                           ),
                           child: Column(
                             children: [
@@ -869,13 +871,19 @@ class ExplorePage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(0),
-                                child: Text(
-                                  'See all',
-                                  style: TextStyle(
-                                    color: shadowTextColor,
-                                    fontSize: 15,
+
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SeeAllToday()));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(0),
+                                  child: Text(
+                                    'See all',
+                                    style: TextStyle(
+                                      color: shadowTextColor,
+                                      fontSize: 15,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1059,13 +1067,18 @@ class ExplorePage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(0),
-                                child: Text(
-                                  'See all',
-                                  style: TextStyle(
-                                    color: shadowTextColor,
-                                    fontSize: 15,
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SeeAllPrevious()));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(0),
+                                  child: Text(
+                                    'See all',
+                                    style: TextStyle(
+                                      color: shadowTextColor,
+                                      fontSize: 15,
+                                    ),
                                   ),
                                 ),
                               ),

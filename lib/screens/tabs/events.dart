@@ -1,30 +1,44 @@
+import 'dart:convert';
+import 'package:event_management_mobile/models/eventmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class EventListPage extends StatefulWidget {
-  const EventListPage({super.key});
+  const EventListPage({Key? key}) : super(key: key);
 
   @override
   _EventListPageState createState() => _EventListPageState();
 }
 
 class _EventListPageState extends State<EventListPage> {
-  final List<String> events = [
-    'Week Of Wellness Opening Sample Event',
-    'Week Of Wellness Opening Sample Event',
-    'Week Of Wellness Opening Sample Event',
-    'Week Of Wellness Opening Sample Event',
-    'Week Of Wellness Opening Sample Event',
-    'Week Of Wellness Opening Sample Event',
-  ];
+  List<EventScheduleModel> events = [];
 
-  final List<String> eventImages = [
-    'assets/event1.png',
-    'assets/event2.png',
-    'assets/event3.png',
-    'assets/event4.png',
-    'assets/event5.png',
-    'assets/event6.png',
-  ];
+  @override
+  void initState() {
+    super.initState();
+    fetchAllEvents();
+  }
+
+  Future<void> fetchAllEvents() async {
+    try {
+      final response = await http.get(Uri.parse('events'));
+
+      if (response.statusCode == 200) {
+        final jsonResponse = jsonDecode(response.body);
+        List<EventScheduleModel> fetchedEvents = List<EventScheduleModel>.from(
+          jsonResponse['events'].map((eventJson) => EventScheduleModel.fromJson(eventJson)),
+        );
+
+        setState(() {
+          events = fetchedEvents;
+        });
+      } else {
+        throw Exception('Failed to fetch events');
+      }
+    } catch (e) {
+      throw Exception('Failed');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +46,12 @@ class _EventListPageState extends State<EventListPage> {
       appBar: AppBar(
         title: const Text(
           'Events',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 21,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w600,
-            ),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 21,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+          ),
         ),
         backgroundColor: Colors.white,
         actions: [
@@ -65,10 +79,7 @@ class _EventListPageState extends State<EventListPage> {
           itemCount: events.length,
           itemBuilder: (context, index) {
             final event = events[index];
-            final date = 'Wed, Apr 28';
-            final time = '5:30 PM';
-            final location = 'USTP Memorial Hall';
-            final image = eventImages[index];
+
             return GestureDetector(
               onTap: () {
                 print('Card tapped: $event');
@@ -82,8 +93,8 @@ class _EventListPageState extends State<EventListPage> {
                   padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                   child: Row(
                     children: [
-                      Image.asset(
-                        image,
+                      Image.network(
+                        event.eventPicture,
                         width: 80,
                         height: 90,
                       ),
@@ -93,7 +104,7 @@ class _EventListPageState extends State<EventListPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '$date • $time',
+                              '${event.eventDate} • ${event.eventTime}',
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 color: Colors.blue,
@@ -103,7 +114,7 @@ class _EventListPageState extends State<EventListPage> {
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                event,
+                                event.eventName,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
@@ -120,7 +131,7 @@ class _EventListPageState extends State<EventListPage> {
                                 ),
                                 SizedBox(width: 4.0),
                                 Text(
-                                  location,
+                                  event.eventPlace,
                                   style: TextStyle(
                                     color: Colors.grey,
                                   ),
